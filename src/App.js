@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import Login from "./pages/login/Login"
 import Home from "./pages/home/Home"
 import Sidebar from "./components/sidebar/Sidebar"
-import Topbar from "./components/topbar/Topbar"
 import UserList from "./pages/userlist/UserList"
 import User from "./pages/user/User"
 import NewUser from "./pages/newuser/NewUser"
@@ -17,7 +16,6 @@ function App() {
   const admin = useSelector((state) => state.user?.currentUser?.isAdmin)
   return (
     <Fragment>
-      {admin && <>{(location.pathname === '/') ? null : <Topbar/>}</>}
       <div className="container">
         {admin && <>{(location.pathname === '/') ? null : <Sidebar/>}</>}
         <Routes>

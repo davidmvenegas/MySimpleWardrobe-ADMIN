@@ -4,6 +4,7 @@
   background-color: rgb(251, 251, 255);
   position: sticky;
   top: 50px;
+  z-index: 1000;
 }
 .sidebarWrapper {
   padding: 20px;
@@ -32,4 +33,13 @@
 .sidebarIcon{
     margin-right: 5px;
     font-size: 45px !important;
+}
+.siebarTitleWrapper {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.siebarTitleWrapper h1 {
+  font-size: 1.8rem;
+  font-weight: 900;
 }

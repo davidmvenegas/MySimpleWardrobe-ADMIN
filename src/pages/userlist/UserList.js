@@ -38,7 +38,7 @@ function UserList() {
 
   return (
     <div className="userList">
-      <DataGrid rows={data} columns={columns} pageSize={8} rowsPerPageOptions={[8]} checkboxSelection disableSelectionOnClick />
+      <DataGrid rows={data} columns={columns} pageSize={10} rowsPerPageOptions={[10]} checkboxSelection disableSelectionOnClick />
     </div>
   )
 }

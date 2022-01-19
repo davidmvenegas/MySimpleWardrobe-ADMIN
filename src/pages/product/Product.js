@@ -24,20 +24,16 @@ function Product() {
                 </div>
                 <div className="productInfoBottom">
                     <div className="productInfoItem">
-                        <span className="productInfoKey">id:</span>
-                        <span className="productInfoValue">123</span>
+                        <span className="productInfoKey">Product #:</span>
+                        <span className="productInfoValue">98523</span>
                     </div>
                     <div className="productInfoItem">
-                        <span className="productInfoKey">sales:</span>
-                        <span className="productInfoValue">5123</span>
+                        <span className="productInfoKey">Sales:</span>
+                        <span className="productInfoValue">23</span>
                     </div>
                     <div className="productInfoItem">
-                        <span className="productInfoKey">active:</span>
-                        <span className="productInfoValue">yes</span>
-                    </div>
-                    <div className="productInfoItem">
-                        <span className="productInfoKey">in stock:</span>
-                        <span className="productInfoValue">no</span>
+                        <span className="productInfoKey">In Stock:</span>
+                        <span className="productInfoValue">Yes</span>
                     </div>
                 </div>
             </div>
@@ -52,16 +48,11 @@ function Product() {
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
-                    <label>Active</label>
-                    <select name="active" id="active">
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
                 </div>
                 <div className="productFormRight">
                     <div className="productUpload">
                         <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="productUploadImg" />
-                        <label for="file">
+                        <label htmlFor="file">
                             <Publish/>
                         </label>
                         <input type="file" id="file" style={{display:"none"}} />

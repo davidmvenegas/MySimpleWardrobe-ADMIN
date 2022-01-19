@@ -35,9 +35,9 @@ function ProductList() {
   ]
 
   return (
-    <div className="productList">
-      <DataGrid rows={data} columns={columns} pageSize={8} rowsPerPageOptions={[8]} checkboxSelection disableSelectionOnClick />
-    </div>
+      <div className="productList">
+        <DataGrid id="dataGridProducts" rows={data} columns={columns} pageSize={10} rowsPerPageOptions={[10]} checkboxSelection disableSelectionOnClick />
+      </div>
   )
 }
 export default ProductList

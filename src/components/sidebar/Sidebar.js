@@ -24,6 +24,9 @@ function Sidebar() {
   }
   return (
     <div className="sidebar">
+    <div className="siebarTitleWrapper">
+      <h1>ADMIN PORTAL</h1>
+    </div>
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <ul className="sidebarList">
