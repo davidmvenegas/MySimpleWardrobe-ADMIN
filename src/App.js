@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import { Routes, Route, useLocation } from "react-router-dom"
-import Login from "./pages/auth/Login"
+import Login from "./pages/login/Login"
 import Home from "./pages/home/Home"
 import Sidebar from "./components/sidebar/Sidebar"
 import Topbar from "./components/topbar/Topbar"
