@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Fragment } from "react"
+import { Routes, Route, useLocation } from "react-router-dom"
+import Login from "./pages/auth/Login"
 import Home from "./pages/home/Home"
 import Sidebar from "./components/sidebar/Sidebar"
 import Topbar from "./components/topbar/Topbar"
@@ -8,13 +10,16 @@ import NewUser from "./pages/newuser/NewUser"
 import ProductList from "./pages/productlist/ProductList"
 import Product from "./pages/product/Product"
 import NewProduct from "./pages/newproduct/NewProduct"
+
 function App() {
+  const location = useLocation()
   return (
-    <BrowserRouter>
-      <Topbar/>
+    <Fragment>
+      {(location.pathname === '/login') ? null : <Topbar/>}
       <div className="container">
-        <Sidebar/>
+        {(location.pathname === '/login') ? null : <Sidebar/>}
         <Routes>
+          <Route path="/login" element={<Login/>} />
           <Route exact path="/" element={<Home/>} />
           <Route path="/users" element={<UserList/>} />
           <Route path="/user/:userId" element={<User/>} />
@@ -24,7 +29,7 @@ function App() {
           <Route path="/newproduct" element={<NewProduct/>} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </Fragment>
   )
 }
 

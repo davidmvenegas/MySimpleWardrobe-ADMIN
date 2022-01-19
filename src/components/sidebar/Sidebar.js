@@ -1,7 +1,7 @@
 import "./sidebar.css"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { LineStyle, PermIdentity, Storefront } from "@material-ui/icons"
+import { HomeOutlined, PermIdentity, Storefront } from "@material-ui/icons"
 
 function Sidebar() {
   const [home, setHome] = useState(true)
@@ -28,7 +28,7 @@ function Sidebar() {
         <div className="sidebarMenu">
           <ul className="sidebarList">
             <Link to="/" className="link" onClick={handleHome}>
-              <li className={home?"sidebarListItem active":"sidebarListItem"}><LineStyle className="sidebarIcon" />Home</li>
+              <li className={home?"sidebarListItem active":"sidebarListItem"}><HomeOutlined className="sidebarIcon" />Home</li>
             </Link>
             <Link to="/users" className="link" onClick={handleUsers}>
               <li className={users?"sidebarListItem active":"sidebarListItem"}><PermIdentity className="sidebarIcon"/>Users</li>
