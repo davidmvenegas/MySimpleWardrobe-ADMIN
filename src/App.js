@@ -1,5 +1,6 @@
 import { Fragment } from "react"
 import { Routes, Route, useLocation } from "react-router-dom"
+import { useSelector } from "react-redux"
 import Login from "./pages/login/Login"
 import Home from "./pages/home/Home"
 import Sidebar from "./components/sidebar/Sidebar"
@@ -13,20 +14,23 @@ import NewProduct from "./pages/newproduct/NewProduct"
 
 function App() {
   const location = useLocation()
+  const admin = useSelector((state) => state.user?.currentUser?.isAdmin)
   return (
     <Fragment>
-      {(location.pathname === '/login') ? null : <Topbar/>}
+      {admin && <>{(location.pathname === '/') ? null : <Topbar/>}</>}
       <div className="container">
-        {(location.pathname === '/login') ? null : <Sidebar/>}
+        {admin && <>{(location.pathname === '/') ? null : <Sidebar/>}</>}
         <Routes>
-          <Route path="/login" element={<Login/>} />
-          <Route exact path="/" element={<Home/>} />
+          <Route path="/" element={<Login/>} />
+          {admin && <>
+          <Route path="/home" element={<Home/>} />
           <Route path="/users" element={<UserList/>} />
           <Route path="/user/:userId" element={<User/>} />
           <Route path="/newUser" element={<NewUser/>} />
           <Route path="/products" element={<ProductList/>} />
           <Route path="/product/:productId" element={<Product/>} />
           <Route path="/newproduct" element={<NewProduct/>} />
+          </>}
         </Routes>
       </div>
     </Fragment>

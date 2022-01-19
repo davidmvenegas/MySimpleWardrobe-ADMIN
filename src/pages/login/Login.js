@@ -1,17 +1,22 @@
 import "./login.css"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 import { loginRequest } from "../../redux/authRedux"
 
 function Login() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const { isFetching, currentUser, error } = useSelector(state => state.user)
 
     function handleSubmit(e) {
         e.preventDefault()
         loginRequest(dispatch, {username, password})
     }
+
+    useEffect(() => currentUser && navigate("/home"), [currentUser, navigate])
 
     return (
     <div id="loginContainer">
@@ -20,7 +25,8 @@ function Login() {
         <form id="loginForm" onSubmit={handleSubmit}>
             <input className="loginInput" type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} required />
             <input className="loginInput" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
-            <button id="loginButton" type="submit">Login</button>
+            {error && <p style={{color: "red"}}>Something went wrong...</p>}
+            <button id="loginButton" type="submit" disabled={isFetching || currentUser}>Login</button>
         </form>
     </div>
     )

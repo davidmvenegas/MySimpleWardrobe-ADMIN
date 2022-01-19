@@ -1,5 +1,5 @@
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist"
-import { configureStore } from "@reduxjs/toolkit"
+import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import storage from "redux-persist/lib/storage";
 import userReducer from "./userRedux"
 
@@ -10,8 +10,8 @@ const persistConfig = {
     storage,
 }
 
-// const rootReducer = combineReducers({ user: userReducer, cart: cartReducer})
-const persistentReducer = persistReducer(persistConfig, userReducer)
+const rootReducer = combineReducers({ user: userReducer })
+const persistentReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
     reducer: persistentReducer,
