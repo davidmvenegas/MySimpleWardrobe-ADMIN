@@ -5,6 +5,14 @@
 .userListUser {
   display: flex;
   align-items: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.userListUser > p {
+  margin-left: .25rem;
+}
+#userStar {
+  color: black;
 }
 .userListImg {
   width: 32px;

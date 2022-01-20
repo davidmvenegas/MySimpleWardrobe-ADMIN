@@ -7,6 +7,7 @@ import { addMember } from "../../redux/authRedux"
 function NewUser() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
   const [inputs, setInputs] = useState({})
 
   function handleChange(e) {
@@ -17,35 +18,37 @@ function NewUser() {
 
   function handleSubmit(e) {
     e.preventDefault()
+    setLoading(true)
     const product = {...inputs}
     addMember(product, dispatch)
-    setTimeout(() => {navigate("/users")}, 500)
+    setTimeout(() => {navigate("/users")}, 2000)
   }
 
   return (
     <div className="newUser">
       <h1 className="newUserTitle">New User</h1>
       <form className="newUserForm" onSubmit={handleSubmit}>
-        <div className="newUserItem">
+        <div className={`newUserItem ${loading ? 'lighter' : ''}`}>
           <label>Username</label>
           <input name="username" type="text" placeholder="John" onChange={handleChange} required/>
         </div>
-        <div className="newUserItem">
+        <div className={`newUserItem ${loading ? 'lighter' : ''}`}>
           <label>Email</label>
           <input name="email" type="email" placeholder="john@gmail.com" onChange={handleChange} required/>
         </div>
-        <div className="newUserItem">
+        <div className={`newUserItem ${loading ? 'lighter' : ''}`}>
           <label>Password</label>
           <input name="password" type="password" placeholder="********" onChange={handleChange} required/>
         </div>
-        <div className="addProductItem">
+        <div className={`addProductItem ${loading ? 'lighter' : ''}`}>
           <label>Admin?</label>
           <select name="isAdmin" onChange={handleChange}>
             <option value="false">No</option>
             <option value="true">Yes</option>
           </select>
         </div>
-        <button type="submit" className="newUserButton">Create</button>
+        {loading && <div id="loadingNewUser"></div>}
+        <button type="submit" className={`newUserButton ${loading ? 'lighter' : ''}`}>Create</button>
       </form>
     </div>
   )

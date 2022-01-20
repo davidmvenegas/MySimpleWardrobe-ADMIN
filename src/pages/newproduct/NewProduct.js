@@ -9,6 +9,7 @@ import app from "../../firebase"
 function NewProduct() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
   const [categories, setCategories] = useState([])
@@ -26,6 +27,7 @@ function NewProduct() {
 
   function handleSubmit(e) {
     e.preventDefault()
+    setLoading(true)
     const fileName = new Date().getTime() + file.name
     const storage = getStorage(app)
     const storageRef = ref(storage, fileName)
@@ -39,42 +41,43 @@ function NewProduct() {
         addProduct(product, dispatch)
       })}
     )
-    setTimeout(() => {navigate("/products")}, 500)
+    setTimeout(() => {navigate("/products")}, 2000)
   }
 
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>
       <form className="addProductForm" onSubmit={handleSubmit}>
-        <div className="addProductItem">
+        <div className={`addProductItem ${loading ? 'lighter' : ''}`}>
           <label>Name</label>
           <input type="text" name="title" placeholder="Name..." onChange={handleChange} required/>
         </div>
-        <div className="addProductItem">
+        <div className={`addProductItem ${loading ? 'lighter' : ''}`}>
           <label>Description</label>
           <input type="text" name="desc" placeholder="Description..." onChange={handleChange} required/>
         </div>
-        <div className="addProductItem">
+        <div className={`addProductItem ${loading ? 'lighter' : ''}`}>
           <label>Price</label>
           <input type="number" name="price" placeholder="$0" onChange={handleChange} required/>
         </div>
-        <div className="addProductItem">
+        <div className={`addProductItem ${loading ? 'lighter' : ''}`}>
           <label>Categories</label>
           <input type="text" placeholder="(add seperated by commas)" onChange={handleCategories} required/>
         </div>
-        <div className="addProductItem">
+        <div className={`addProductItem ${loading ? 'lighter' : ''}`}>
           <label>Sizes</label>
           <input type="text" placeholder="(add seperated by commas)" onChange={handleSizes} required/>
         </div>
-        <div className="addProductItem">
+        <div className={`addProductItem ${loading ? 'lighter' : ''}`}>
           <label>Colors</label>
           <input type="text" placeholder="(add seperated by commas)" onChange={handleColors} required/>
         </div>
-        <div className="addProductItem">
+        <div className={`addProductItem ${loading ? 'lighter' : ''}`}>
           <label>Image</label>
           <input type="file" id="file" accept=".png, .jpg, .jpeg" onChange={e=>setFile(e.target.files[0])} required/>
         </div>
-        <button type="submit" className="addProductButton">Create</button>
+        {loading && <div id="loadingNewProduct"></div>}
+        <button type="submit" className={`addProductButton ${loading ? 'lighter' : ''}`}>Create</button>
       </form>
     </div>
   )
