@@ -2,7 +2,6 @@ import { Fragment } from "react"
 import { Routes, Route, useLocation } from "react-router-dom"
 import { useSelector } from "react-redux"
 import Login from "./pages/login/Login"
-import Home from "./pages/home/Home"
 import Sidebar from "./components/sidebar/Sidebar"
 import UserList from "./pages/userlist/UserList"
 import User from "./pages/user/User"
@@ -21,7 +20,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Login/>} />
           {admin && <>
-          <Route path="/home" element={<Home/>} />
           <Route path="/users" element={<UserList/>} />
           <Route path="/user/:userId" element={<User/>} />
           <Route path="/newUser" element={<NewUser/>} />

@@ -9,14 +9,14 @@ function Login() {
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const { isFetching, currentUser, error } = useSelector(state => state.user)
+    const { isFetching, currentUser } = useSelector(state => state.user)
 
     function handleSubmit(e) {
         e.preventDefault()
         loginRequest(dispatch, {username, password})
     }
 
-    useEffect(() => currentUser && navigate("/home"), [currentUser, navigate])
+    useEffect(() => currentUser && navigate("/users"), [currentUser, navigate])
 
     return (
     <div id="loginContainer">
@@ -25,7 +25,6 @@ function Login() {
         <form id="loginForm" onSubmit={handleSubmit}>
             <input className="loginInput" type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} required />
             <input className="loginInput" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
-            {error && <p style={{color: "red"}}>Something went wrong...</p>}
             <button id="loginButton" type="submit" disabled={isFetching || currentUser}>Login</button>
         </form>
     </div>

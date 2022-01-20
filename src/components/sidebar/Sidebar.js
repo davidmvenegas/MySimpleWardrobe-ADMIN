@@ -1,27 +1,30 @@
 import "./sidebar.css"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { HomeOutlined, PermIdentity, Storefront } from "@material-ui/icons"
+import { PermIdentity, Storefront } from "@material-ui/icons"
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { logout } from "../../redux/userRedux"
 
 function Sidebar() {
-  const [home, setHome] = useState(true)
-  const [users, setUsers] = useState(false)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [users, setUsers] = useState(true)
   const [products, setProducts] = useState(false)
-  function handleHome() {
-    setHome(true)
-    setUsers(false)
-    setProducts(false)
-  }
+
   function handleUsers() {
-    setHome(false)
     setUsers(true)
     setProducts(false)
   }
   function handleProducts() {
-    setHome(false)
     setUsers(false)
     setProducts(true)
   }
+  function handleLogout() {
+    dispatch(logout())
+    navigate("/")
+  }
+
   return (
     <div className="sidebar">
     <div className="siebarTitleWrapper">
@@ -30,9 +33,6 @@ function Sidebar() {
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <ul className="sidebarList">
-            <Link to="/" className="link" onClick={handleHome}>
-              <li className={home?"sidebarListItem active":"sidebarListItem"}><HomeOutlined className="sidebarIcon" />Home</li>
-            </Link>
             <Link to="/users" className="link" onClick={handleUsers}>
               <li className={users?"sidebarListItem active":"sidebarListItem"}><PermIdentity className="sidebarIcon"/>Users</li>
             </Link>
@@ -41,6 +41,7 @@ function Sidebar() {
             </Link>
           </ul>
         </div>
+        <button onClick={handleLogout} className="logoutButton">LOGOUT</button>
       </div>
     </div>
   )

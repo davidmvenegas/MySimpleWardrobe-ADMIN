@@ -1,31 +1,53 @@
 import "./product.css"
-import { Link } from "react-router-dom"
+import { useEffect, useMemo, useState } from "react"
+import { Link, useLocation } from "react-router-dom"
+import { useSelector } from "react-redux"
 import { Publish } from "@material-ui/icons"
 import Chart from "../../components/chart/Chart"
-import { productData } from "../../dummyData"
+import { userRequest } from "../../request"
 
 function Product() {
+
+    const location = useLocation()
+    const productId = location.pathname.split("/")[2]
+    const [productStats, setProductStats] = useState([])
+    const product = useSelector((state) => state.product.products.find((product) => product._id === productId))
+    const MONTHS = useMemo(() => ["Jan","Feb","Mar","Apr","May","Jun","Jul","Agu","Sep","Oct","Nov","Dec"],[])
+
+    useEffect(() => {
+        const getStats = async () => {
+        try {
+            const res = await userRequest.get(`orders/revenue?pid=${productId}`)
+            const list = res.data.sort((a,b) => a._id - b._id)
+            list.map((item) => setProductStats((prev) => [...prev, {name: MONTHS[item._id - 1], Sales: item.total}]))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    getStats()
+    }, [productId, MONTHS])
+
     return (
     <div className="product">
         <div className="productTitleContainer">
-            <h1 className="productTitle">Product</h1>
-            <Link to="/newproduct">
+            <h1 className="productTitle">{product.title}</h1>
+            <Link id="productToNew" to="/newproduct">
                 <button className="productAddButton">Create</button>
             </Link>
         </div>
         <div className="productTop">
             <div className="productTopLeft">
-                <Chart data={productData} dataKey="Sales" title="Sales Performance"/>
+                <Chart data={productStats} dataKey="Sales" title="Sales Performance"/>
             </div>
             <div className="productTopRight">
                 <div className="productInfoTop">
-                    <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="productInfoImg" />
-                    <span className="productName">Apple Airpods</span>
+                    <img src={product.img} alt="" className="productInfoImg" />
+                    <span className="productName">{product.title}</span>
                 </div>
                 <div className="productInfoBottom">
                     <div className="productInfoItem">
                         <span className="productInfoKey">Product #:</span>
-                        <span className="productInfoValue">98523</span>
+                        <span className="productInfoValue">{product._id}</span>
                     </div>
                     <div className="productInfoItem">
                         <span className="productInfoKey">Sales:</span>
@@ -33,7 +55,7 @@ function Product() {
                     </div>
                     <div className="productInfoItem">
                         <span className="productInfoKey">In Stock:</span>
-                        <span className="productInfoValue">Yes</span>
+                        <span className="productInfoValue">{product.inStock ? "Yes" : "No"}</span>
                     </div>
                 </div>
             </div>
@@ -42,7 +64,11 @@ function Product() {
             <form className="productForm">
                 <div className="productFormLeft">
                     <label>Product Name</label>
-                    <input type="text" placeholder="Apple AirPod" />
+                    <input type="text" placeholder={product.title} />
+                    <label>Product Description</label>
+                    <input type="text" placeholder={product.desc} />
+                    <label>Product Price</label>
+                    <input type="text" placeholder={product.price} />
                     <label>In Stock</label>
                     <select name="inStock" id="idStock">
                         <option value="yes">Yes</option>
@@ -51,7 +77,7 @@ function Product() {
                 </div>
                 <div className="productFormRight">
                     <div className="productUpload">
-                        <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="productUploadImg" />
+                        <img src={product.img} alt="" className="productUploadImg" />
                         <label htmlFor="file">
                             <Publish/>
                         </label>
