@@ -5,16 +5,13 @@
 .productTitleContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 0 0 10px;
+  justify-content: flex-start;
+  margin-bottom: 20px;
   width: 80vw;
 }
 .productTitle {
   margin-left: 1.5rem;
   font-size: 2.5rem;
-}
-#productToNew {
-  margin-right: 1.25rem;
 }
 .productAddButton {
   width: 80px;

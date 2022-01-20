@@ -1,5 +1,5 @@
 .productList {
-    margin-top: 50px;
+    margin-top: 25px;
     width: 80vw;
 }
 .productListItem {
@@ -25,4 +25,14 @@
 .productListDelete {
     color: red;
     cursor: pointer;
+}
+.product-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem 2rem;
+}
+#productHeaderTitle {
+    font-size: 2.5rem;
+    font-weight: 900;
 }

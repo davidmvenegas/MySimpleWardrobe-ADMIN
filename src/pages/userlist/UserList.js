@@ -38,6 +38,12 @@ function UserList() {
 
   return (
     <div className="userList">
+      <div className="product-header">
+        <h1 id="productHeaderTitle">USERS</h1>
+        <Link to="/newUser">
+          <button className="productAddButton">Create</button>
+        </Link>
+      </div>
       <DataGrid rows={data} columns={columns} pageSize={10} rowsPerPageOptions={[10]} checkboxSelection disableSelectionOnClick />
     </div>
   )

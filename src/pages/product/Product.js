@@ -1,6 +1,6 @@
 import "./product.css"
 import { useEffect, useMemo, useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { Publish } from "@material-ui/icons"
 import Chart from "../../components/chart/Chart"
@@ -31,9 +31,6 @@ function Product() {
     <div className="product">
         <div className="productTitleContainer">
             <h1 className="productTitle">{product.title}</h1>
-            <Link id="productToNew" to="/newproduct">
-                <button className="productAddButton">Create</button>
-            </Link>
         </div>
         <div className="productTop">
             <div className="productTopLeft">

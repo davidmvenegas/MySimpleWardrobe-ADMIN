@@ -39,7 +39,13 @@ function ProductList() {
       
   return (
       <div className="productList">
-        <DataGrid id="dataGridProducts" getRowId={(row) => row._id} rows={products} columns={columns} pageSize={10} rowsPerPageOptions={[10]} checkboxSelection disableSelectionOnClick />
+        <div className="product-header">
+          <h1 id="productHeaderTitle" >PRODUCTS</h1>
+          <Link to="/newproduct">
+            <button className="productAddButton">Create</button>
+          </Link>
+        </div>
+        <DataGrid getRowId={(row) => row._id} rows={products} columns={columns} pageSize={10} rowsPerPageOptions={[10]} checkboxSelection disableSelectionOnClick />
       </div>
   )
 }
