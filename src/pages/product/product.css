@@ -1,16 +1,19 @@
 .product {
-  margin-top: 50px;
   width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .productTitleContainer {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   margin-bottom: 20px;
   width: 80vw;
 }
 .productTitle {
-  margin-left: 1.5rem;
+  text-align: center;
   font-size: 2.5rem;
 }
 .productAddButton {
@@ -23,51 +26,8 @@
   font-size: 16px;
   cursor: pointer;
 }
-.productTop {
-  display: flex;
-}
-.productTopLeft {
-  flex: 1;
-}
-.productTopRight {
-  flex: 1;
-  padding: 20px;
-  margin: 20px;
-  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-}
-.productInfoImg {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 20px;
-}
-.productInfoTop {
-  display: flex;
-  align-items: center;
-}
-.productName {
-  font-weight: 600;
-}
-.productInfoBottom {
-  margin-top: 10px;
-}
-.productInfoItem {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: .5rem 0;
-  font-size: 1.125rem;
-}
-.productInfoItem:first-of-type {
-  margin-top: 1.5rem;
-}
-.productInfoValue {
-  font-weight: 300;
-}
 .productBottom {
+  width: 60%;
   padding: 20px;
   margin: 20px;
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
@@ -80,42 +40,53 @@
 .productFormLeft {
   display: flex;
   flex-direction: column;
+  margin-left: 5px;
 }
 .productFormLeft > label {
-  margin-bottom: 10px;
-  color: gray;
+  margin-bottom: 5px;
+  color: black;
+  font-weight: 400;
+  font-size: 1.085rem;
 }
 .productFormLeft > input {
-  margin-bottom: 10px;
+  margin-bottom: 22.5px;
   border: none;
   padding: 5px;
-  border-bottom: 1px solid gray;
+  font-size: .9rem;
+  width: 15rem;
+  border-bottom: 1px solid black;
 }
 .productFormLeft > select {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  height: 25px;
 }
 .productUploadImg {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
   object-fit: cover;
   margin-right: 20px;
 }
 .productFormRight {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin-right: 25px;
 }
 .productUpload {
   display: flex;
   align-items: center;
 }
+.productUpload > label {
+  cursor: pointer;
+}
 .productButton {
   border: none;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
-  background-color: darkblue;
+  background-color: teal;
   color:white;
+  font-size: .85rem;
   font-weight: 600;
   cursor: pointer;
 }

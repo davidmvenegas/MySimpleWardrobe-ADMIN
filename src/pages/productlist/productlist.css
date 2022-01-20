@@ -15,16 +15,19 @@
 }
 .productListEdit {
     border: none;
-    border-radius: 10px;
-    padding: 5px 10px;
-    background-color: #3bb077;
+    border-radius: 5px;
+    padding: 7px 12.5px;
+    background-color: teal;
     color: white;
     cursor: pointer;
-    margin-right: 20px;
+    width: 4.5rem;
+    margin-left: 10px;
+    margin-right: 50px;
 }
 .productListDelete {
     color: red;
     cursor: pointer;
+    font-size: 32.5px !important;
 }
 .product-header {
     display: flex;

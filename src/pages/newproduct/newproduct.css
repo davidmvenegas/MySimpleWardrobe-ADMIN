@@ -29,10 +29,10 @@
   color: rgb(86, 86, 86);
 }
 .addProductItem > input {
-  height: 50px;
+  height: 42.5px;
   padding: 10px;
-  margin-bottom: 10px;
-  font-size: 1rem;
+  margin-bottom: 6.5px;
+  font-size: .85rem;
   border: 1px solid gray;
   border-radius: 5px;
 }

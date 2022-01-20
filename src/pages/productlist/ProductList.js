@@ -9,7 +9,7 @@ import { getProducts, deleteProducts } from "../../redux/authRedux"
 function ProductList() {
   const dispatch = useDispatch()
   const products = useSelector((state) => state.product.products)
-  
+
   const columns = [
     {field: "product", headerName: "Product", width: 225,
     renderCell: (params) => {
@@ -19,15 +19,15 @@ function ProductList() {
             {params.row.title}
           </div>
         )}},
-        {field: "_id", headerName: "ID", width: 225},
-        {field: "inStock", headerName: "In Stock", width: 200},
-        {field: "price", headerName: "Price $", width: 160},
-        {field: "action", headerName: "Action", width: 150,
+        {field: "_id", headerName: "ID", width: 300},
+        {field: "inStock", headerName: "In Stock", width: 185},
+        {field: "price", headerName: "Price $", width: 185},
+        {field: "action", headerName: "Actions", width: 175,
         renderCell: (params) => {
         return (
           <>
             <Link to={"/product/" + params.row._id}>
-              <button className="productListEdit">Edit</button>
+              <button className="productListEdit">Update</button>
             </Link>
             <Delete className="productListDelete" onClick={() => handleDelete(params.row._id)}/>
           </>

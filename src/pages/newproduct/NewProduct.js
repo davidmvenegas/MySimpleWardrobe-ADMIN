@@ -12,6 +12,8 @@ function NewProduct() {
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
   const [categories, setCategories] = useState([])
+  const [sizes, setSizes] = useState([])
+  const [colors, setColors] = useState([])
 
   function handleChange(e) {
     setInputs(prev => {
@@ -19,6 +21,8 @@ function NewProduct() {
     })
   }
   const handleCategories = (e) => setCategories(e.target.value.split(","))
+  const handleSizes = (e) => setSizes(e.target.value.split(","))
+  const handleColors = (e) => setColors(e.target.value.split(","))
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -31,7 +35,7 @@ function NewProduct() {
       (error) => {alert(error)},
       () => {getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log('File available at', downloadURL)
-        const product = {...inputs, img: downloadURL, categories: categories}
+        const product = {...inputs, img: downloadURL, categories: categories, size: sizes, color: colors}
         addProduct(product, dispatch)
       })}
     )
@@ -57,6 +61,14 @@ function NewProduct() {
         <div className="addProductItem">
           <label>Categories</label>
           <input type="text" placeholder="(add seperated by commas)" onChange={handleCategories} required/>
+        </div>
+        <div className="addProductItem">
+          <label>Sizes</label>
+          <input type="text" placeholder="(add seperated by commas)" onChange={handleSizes} required/>
+        </div>
+        <div className="addProductItem">
+          <label>Colors</label>
+          <input type="text" placeholder="(add seperated by commas)" onChange={handleColors} required/>
         </div>
         <div className="addProductItem">
           <label>Image</label>

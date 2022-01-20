@@ -1,83 +1,36 @@
 import "./user.css"
-import { CalendarToday, LocationSearching, MailOutline, PermIdentity, PhoneAndroid, Publish } from "@material-ui/icons"
+import { useLocation } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 function User() {
-  return (
-    <div className="user">
-      <div className="userTitleContainer">
-        <h1 className="userTitle">Edit User</h1>
-      </div>
-      <div className="userContainer">
-        <div className="userShow">
-          <div className="userShowTop">
-            <img src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="userShowImg" />
-            <div className="userShowTopTitle">
-              <span className="userShowUsername">John Snow</span>
-              <span className="userShowUserTitle">Active 4 days ago</span>
-            </div>
-          </div>
-          <div className="userShowBottom">
-            <span className="userShowTitle">Account Details</span>
-            <div className="userShowInfo">
-              <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">johnsnow99</span>
-            </div>
-            <div className="userShowInfo">
-              <CalendarToday className="userShowIcon" />
-              <span className="userShowInfoTitle">10.12.1999</span>
-            </div>
-            <span className="userShowTitle">Contact Details</span>
-            <div className="userShowInfo">
-              <PhoneAndroid className="userShowIcon" />
-              <span className="userShowInfoTitle">123-456-7890</span>
-            </div>
-            <div className="userShowInfo">
-              <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">johnsnow99@gmail.com</span>
-            </div>
-            <div className="userShowInfo">
-              <LocationSearching className="userShowIcon" />
-              <span className="userShowInfoTitle">New York | USA</span>
-            </div>
-          </div>
+    const location = useLocation()
+    const memberId = location.pathname.split("/").at(-1)
+    const member = useSelector((state) => state.member.members.find((member) => member._id === memberId))
+
+    return (
+    <div className="product">
+        <div className="productTitleContainer">
+            <h1 className="productTitle">UPDATE USER</h1>
         </div>
-        <div className="userUpdate">
-          <span className="userUpdateTitle">Edit</span>
-          <form className="userUpdateForm">
-            <div className="userUpdateLeft">
-              <div className="userUpdateItem">
-                <label>Username</label>
-                <input type="text" placeholder="johnsnow99" className="userUpdateInput" />
-              </div>
-              <div className="userUpdateItem">
-                <label>Full Name</label>
-                <input type="text" placeholder="John Snow" className="userUpdateInput" />
-              </div>
-              <div className="userUpdateItem">
-                <label>Email</label>
-                <input type="text" placeholder="johnsnow99@gmail.com" className="userUpdateInput" />
-              </div>
-              <div className="userUpdateItem">
-                <label>Phone</label>
-                <input type="text" placeholder="123-456-7890" className="userUpdateInput" />
-              </div>
-              <div className="userUpdateItem">
-                <label>Address</label>
-                <input type="text" placeholder="New York | USA" className="userUpdateInput" />
-              </div>
-            </div>
-            <div className="userUpdateRight">
-              <div className="userUpdateUpload">
-                <img className="userUpdateImg" src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
-                <label htmlFor="file"><Publish className="userUpdateIcon" /></label>
-                <input type="file" id="file" style={{ display: "none" }} />
-              </div>
-              <button className="userUpdateButton">Update</button>
-            </div>
-          </form>
+        <div className="userEntireContainer">
+            <form className="userForm">
+                <div className="userFormLeft">
+                    <label>Username:</label>
+                    <input type="text" placeholder={member.username} />
+                    <label>Email:</label>
+                    <input type="email" placeholder={member.email} />
+                    <label>Password:</label>
+                    <input type="password" placeholder="•••••••••••••••••" />
+                    <label>Admin?</label>
+                    <select name="isAdmin" id="idStock">
+                        <option value="no" selected={!member.isAdmin}>No</option>
+                        <option value="yes" selected={member.isAdmin}>Yes</option>
+                    </select>
+                    <button className="userActualButton">Update</button>
+                </div>
+            </form>
         </div>
-      </div>
     </div>
-  )
+    )
 }
 export default User

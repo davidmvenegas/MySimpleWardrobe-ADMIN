@@ -35,8 +35,8 @@
   background-color: rgb(235, 235, 255);
 }
 .sidebarIcon{
-    margin-right: 5px;
-    font-size: 45px !important;
+    margin-right: 7.5px;
+    font-size: 40px !important;
 }
 .siebarTitleWrapper {
   text-align: center;
@@ -44,7 +44,7 @@
   margin-bottom: 1rem;
 }
 .siebarTitleWrapper h1 {
-  font-size: 1.8rem;
+  font-size: 1.85rem;
   font-weight: 900;
 }
 .logoutButton {

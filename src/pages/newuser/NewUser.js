@@ -2,7 +2,7 @@ import "./newuser.css"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-// import { addUser } from "../../redux/authRedux"
+import { addMember } from "../../redux/authRedux"
 
 function NewUser() {
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ function NewUser() {
   function handleSubmit(e) {
     e.preventDefault()
     const product = {...inputs}
-    // addUser(product, dispatch)
+    addMember(product, dispatch)
     setTimeout(() => {navigate("/users")}, 500)
   }
 
