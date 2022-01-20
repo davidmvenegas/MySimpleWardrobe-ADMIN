@@ -1,7 +1,9 @@
 import { generalRequest, userRequest } from "../request"
 import { loginSuccess, loginStart, loginFailure } from "./userRedux"
 import { deleteProductFailure, deleteProductStart, deleteProductSuccess, getProductFailure, getProductStart, getProductSuccess, updateProductStart, updateProductSuccess, updateProductFailure, addProductStart, addProductSuccess, addProductFailure } from "./productRedux"
+import { getMemberStart, getMemberSuccess, getMemberFailure, deleteMemberStart, deleteMemberSuccess, deleteMemberFailure, updateMemberStart, updateMemberSuccess, updateMemberFailure, addMemberStart, addMemberSuccess, addMemberFailure } from "./memberRedux"
 
+// LOGIN
 async function loginRequest(dispatch, user) {
     dispatch(loginStart())
     try {
@@ -12,6 +14,8 @@ async function loginRequest(dispatch, user) {
         console.error(error)
     }
 }
+
+// PRODUCTS
 async function getProducts(dispatch) {
     dispatch(getProductStart())
     try {
@@ -32,15 +36,15 @@ async function deleteProducts(id, dispatch) {
         console.error(error)
     }
 }
-const updateProduct = async (id, product, dispatch) => {
-    dispatch(updateProductStart())
-    try {
-        dispatch(updateProductSuccess({id, product}))
-    } catch (error) {
-        dispatch(updateProductFailure())
-    }
-}
-const addProduct = async (product, dispatch) => {
+// async function updateProduct(id, product, dispatch) {
+//     dispatch(updateProductStart())
+//     try {
+//         dispatch(updateProductSuccess({id, product}))
+//     } catch (error) {
+//         dispatch(updateProductFailure())
+//     }
+// }
+async function addProduct(product, dispatch) {
     dispatch(addProductStart())
     try {
         const res = await userRequest.post(`/products`, product)
@@ -50,4 +54,43 @@ const addProduct = async (product, dispatch) => {
     }
 }
 
-export { loginRequest, getProducts, deleteProducts, updateProduct, addProduct }
+// MEMBERS
+async function getMembers(dispatch) {
+    dispatch(getMemberStart())
+    try {
+        const response = await generalRequest.get("users")
+        dispatch(getMemberSuccess(response.data))
+    } catch (error) {
+        dispatch(getMemberFailure())
+        console.error(error)
+    }
+}
+async function deleteMembers(id, dispatch) {
+    dispatch(deleteMemberStart())
+    try {
+        const response = await userRequest.delete(`users/${id}`)
+        dispatch(deleteMemberSuccess(response.data))
+    } catch (error) {
+        dispatch(deleteMemberFailure())
+        console.error(error)
+    }
+}
+// async function updateMember(id, member, dispatch) {
+//     dispatch(updateMemberStart())
+//     try {
+//         dispatch(updateMemberSuccess({id, member}))
+//     } catch (error) {
+//         dispatch(updateMemberFailure())
+//     }
+// }
+async function addMember(member, dispatch) {
+    dispatch(addMemberStart())
+    try {
+        const res = await userRequest.post(`/auth/register`, member)
+        dispatch(addMemberSuccess(res.data))
+    } catch (error) {
+        dispatch(addMemberFailure())
+    }
+}
+
+export { loginRequest, getProducts, deleteProducts, addProduct, getMembers, deleteMembers, addMember }

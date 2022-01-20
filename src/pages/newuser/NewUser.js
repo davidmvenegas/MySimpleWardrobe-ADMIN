@@ -1,27 +1,51 @@
 import "./newuser.css"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+// import { addUser } from "../../redux/authRedux"
 
 function NewUser() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [inputs, setInputs] = useState({})
+
+  function handleChange(e) {
+    setInputs(prev => {
+      return {...prev, [e.target.name]: e.target.value}
+    })
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const product = {...inputs}
+    // addUser(product, dispatch)
+    setTimeout(() => {navigate("/users")}, 500)
+  }
+
   return (
     <div className="newUser">
       <h1 className="newUserTitle">New User</h1>
-      <form className="newUserForm">
+      <form className="newUserForm" onSubmit={handleSubmit}>
         <div className="newUserItem">
           <label>Username</label>
-          <input type="text" placeholder="John" />
+          <input name="username" type="text" placeholder="John" onChange={handleChange} required/>
         </div>
         <div className="newUserItem">
           <label>Email</label>
-          <input type="email" placeholder="john@gmail.com" />
+          <input name="email" type="email" placeholder="john@gmail.com" onChange={handleChange} required/>
         </div>
         <div className="newUserItem">
           <label>Password</label>
-          <input type="password" placeholder="********" />
+          <input name="password" type="password" placeholder="********" onChange={handleChange} required/>
         </div>
-        <div className="newUserItem">
-          <label>Phone</label>
-          <input type="text" placeholder="123-456-7890" />
+        <div className="addProductItem">
+          <label>Admin?</label>
+          <select name="isAdmin" onChange={handleChange}>
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
         </div>
-        <button className="newUserButton">Create</button>
+        <button type="submit" className="newUserButton">Create</button>
       </form>
     </div>
   )

@@ -1,11 +1,13 @@
 import "./newproduct.css"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { addProduct } from "../../redux/authRedux"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import app from "../../firebase"
 
 function NewProduct() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
@@ -33,16 +35,13 @@ function NewProduct() {
         addProduct(product, dispatch)
       })}
     )
+    setTimeout(() => {navigate("/products")}, 500)
   }
 
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>
       <form className="addProductForm" onSubmit={handleSubmit}>
-        <div className="addProductItem">
-          <label>Image</label>
-          <input type="file" id="file" accept=".png, .jpg, .jpeg" onChange={e=>setFile(e.target.files[0])} required/>
-        </div>
         <div className="addProductItem">
           <label>Name</label>
           <input type="text" name="title" placeholder="Name..." onChange={handleChange} required/>
@@ -60,11 +59,8 @@ function NewProduct() {
           <input type="text" placeholder="(add seperated by commas)" onChange={handleCategories} required/>
         </div>
         <div className="addProductItem">
-          <label>In Stock</label>
-          <select name="inStock" onChange={handleChange}>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
+          <label>Image</label>
+          <input type="file" id="file" accept=".png, .jpg, .jpeg" onChange={e=>setFile(e.target.files[0])} required/>
         </div>
         <button type="submit" className="addProductButton">Create</button>
       </form>
