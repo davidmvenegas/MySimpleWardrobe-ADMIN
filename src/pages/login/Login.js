@@ -20,7 +20,7 @@ function Login() {
 
     return (
     <div id="loginContainer">
-        <h1 id="loginTitle">The Red Planet Shop</h1>
+        <h1 id="loginTitle">My Simple Wardrobe</h1>
         <h1 id="loginSubtitle">ADMIN PORTAL</h1>
         <form id="loginForm" onSubmit={handleSubmit}>
             <input className="loginInput" type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
